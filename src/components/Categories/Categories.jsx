@@ -15,12 +15,12 @@ const dataCategories = [
   {
     id: 3,
     name: "Sountrack your home",
-    subtext: " ",
+    subtext: "Set the mood at home with our curated soundtracks",
   },
   {
     id: 4,
     name: "Kick this back this Sunday...",
-    subtext: " ",
+    subtext: "Countdown to Sunday: Your new playlist awaits",
   },
 ];
 

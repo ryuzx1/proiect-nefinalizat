@@ -4,43 +4,46 @@ import { ReactComponent as SearchIcon } from "../../svgs/search.svg";
 import { ReactComponent as LibraryIcon } from "../../svgs/library.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { ReactComponent as Logo } from "../../svgs/logo.svg";
+
+console.log(Logo);
 
 export function NavBar() {
-  const [isActive, setActive] = useState(false);
+  const [activeTab, setActiveTab] = useState(null);
 
-  const toggleClass = () => {
-    setActive(!isActive);
-  };
-
-  const [isActive1, setActive1] = useState(false);
-
-  const toggleClass1 = () => {
-    setActive1(!isActive1);
-  };
-  const [isActive2, setActive2] = useState(false);
-
-  const toggleClass2 = () => {
-    setActive2(!isActive2);
+  const handleTabClick = (tabName) => {
+    setActiveTab(tabName);
   };
 
   return (
     <div className="navBar">
-      <div className="logo">Logo</div>
+      <div className="logo">
+        <Logo />
+      </div>
       <ul>
         <Link to="/" style={{ textDecoration: "none" }}>
-          <li className={isActive ? "active" : null} onClick={toggleClass}>
+          <li
+            className={activeTab === "home" ? "active" : null}
+            onClick={() => handleTabClick("home")}
+          >
             <HomeIcon />
             Home
           </li>
         </Link>
         <Link to="/search" style={{ textDecoration: "none" }}>
-          <li className={isActive1 ? "active1" : null} onClick={toggleClass1}>
+          <li
+            className={activeTab === "search" ? "active" : null}
+            onClick={() => handleTabClick("search")}
+          >
             <SearchIcon />
             Search
           </li>
         </Link>
         <Link to="/your-library" style={{ textDecoration: "none" }}>
-          <li className={isActive2 ? "active2" : null} onClick={toggleClass2}>
+          <li
+            className={activeTab === "library" ? "active" : null}
+            onClick={() => handleTabClick("library")}
+          >
             <LibraryIcon />
             Your Library
           </li>

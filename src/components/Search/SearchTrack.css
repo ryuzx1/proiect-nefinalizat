@@ -6,7 +6,6 @@
   position: relative;
   padding: 15px 0 0;
   margin-top: 10px;
-  width: 50%;
 }
 
 .form__field {
@@ -17,7 +16,7 @@
   outline: 0;
   font-size: 1.3rem;
   color: #fff;
-  padding: 7px 0;
+  padding: 0 0;
   background: transparent;
   transition: border-color 0.2s;
 
@@ -48,19 +47,103 @@
     display: block;
     transition: 0.2s;
     font-size: 1rem;
-    color: #11998e;
+    color: #7232d6;
     font-weight: 700;
   }
   padding-bottom: 6px;
   font-weight: 700;
   border-width: 3px;
-  border-image: linear-gradient(to right, #11998e, #38ef7d);
+  border-image: linear-gradient(to right, #7232d6, #f31c00);
   border-image-slice: 1;
 }
-/* reset input */
+
 .form__field {
   &:required,
   &:invalid {
     box-shadow: none;
   }
+}
+
+form {
+  margin: 1rem;
+  margin-bottom: 3rem;
+}
+
+.cardSearch {
+  display: flex;
+}
+
+.card-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 10px;
+}
+
+.track-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.artist-name {
+  font-style: italic;
+  color: #666;
+}
+
+.cardsWrapSearch {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cardSearch {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.cardContentSearch {
+  display: flex;
+}
+
+.cardImage {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px 0 0 10px;
+}
+
+.trackInfo {
+  padding: 20px;
+}
+
+.cardTrack {
+  width: 200px;
+  margin: 20px;
+  border: 1px solid#7132d685;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.form__group.field {
+  margin-top: 2rem;
+}
+
+.cox a {
+  text-decoration: none;
+  color: #7232d6;
+  margin-left: 1rem;
+}
+
+.artist-name {
+  left: -1px;
+  position: relative;
 }

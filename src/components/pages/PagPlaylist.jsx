@@ -3,14 +3,30 @@ import "./PagPlaylist.css";
 import { ReactComponent as PlayIcon } from "../../svgs/playIcon.svg";
 import { ReactComponent as HeartIcon } from "../../svgs/heart.svg";
 import { ReactComponent as NoteIcon } from "../../svgs/note.svg";
-import { dataPlaylist } from "../datas/dataPlaylist";
-import { dataTracks } from "../datas/dataTracks";
+import { dataPlaylist } from "../../datas/dataPlaylist";
+import { dataTracks } from "../../datas/dataTracks";
 import { useParams } from "react-router-dom";
 
 export default function PagPlaylist() {
   let { id } = useParams();
 
   id = parseInt(id);
+
+  function addRandomSongTime(tracks) {
+    function getRandomTime() {
+      const minutes = Math.floor(Math.random() * (4 - 2 + 1)) + 2;
+      const seconds = Math.floor(Math.random() * 60);
+      return `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
+    }
+
+    return tracks.map((track) => ({
+      ...track,
+      songtime: getRandomTime(),
+    }));
+  }
+
+  const dataTracksWithTime = addRandomSongTime(dataTracks);
+  console.log(dataTracksWithTime);
 
   console.log("ID from params:", id);
 
@@ -23,7 +39,6 @@ export default function PagPlaylist() {
 
   console.log("Matching Playlist:", playlist);
 
-  // Define an array of playlist names and corresponding category IDs
   const playlistCategories = [
     { name: "Home Playlist", category_id: "home" },
     { name: "Sunday Playlist", category_id: "sunday" },
@@ -33,14 +48,13 @@ export default function PagPlaylist() {
 
   let filteredTracks = [];
 
-  // Loop through each playlist name and filter tracks
   playlistCategories.forEach((playlistCategory) => {
-    for (let i = 1; i <= 3; i++) {
+    for (let i = 1; i <= 6; i++) {
       const playlistName = `${playlistCategory.name} ${i}`;
       const category_id = playlistCategory.category_id;
 
       filteredTracks = filteredTracks.concat(
-        dataTracks.filter(
+        dataTracksWithTime.filter(
           (track) =>
             track.category_id === category_id &&
             playlist.name.includes(playlistName)
@@ -51,19 +65,15 @@ export default function PagPlaylist() {
 
   console.log("Filtered Tracks:", filteredTracks);
 
-  // Shuffle the filteredTracks array
   const shuffledTracks = filteredTracks.sort(() => Math.random() - 0.5);
 
-  // Get a random number between 8 and 12
   const randomCount = Math.floor(Math.random() * (12 - 8 + 1)) + 8;
 
-  // Slice the shuffled array to get 8 to 12 random tracks
   const slicedTracks = shuffledTracks.slice(0, randomCount);
 
-  // Render the sliced tracks
   const renderedTracks = slicedTracks.map((track) => (
-    <ul className="songList">
-      <li className="list" key={track.id}>
+    <ul className="songList" key={track.id}>
+      <li className="list">
         <div className="songIcon">
           <NoteIcon className="noteI" />
           <PlayIcon className="playI" />
@@ -76,7 +86,7 @@ export default function PagPlaylist() {
           <span className="smallText">{track.artist}</span>
         </div>
         <div className="songTime">
-          <span>songtime</span>
+          <span>{track.songtime}</span>
         </div>
       </li>
     </ul>
@@ -93,12 +103,9 @@ export default function PagPlaylist() {
             <p className="smallText uppercase">Playlist</p>
             <h1 className="ttt">{playlist.name}</h1>
 
-            <p className="smallText">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet,
-              eos.
-            </p>
+            <p className="smallText">{playlist.desc}</p>
             <div className="playlistPageDesc">
-              <p>Spotify</p>
+              <p>RythmX</p>
             </div>
           </div>
         </div>

@@ -48,7 +48,7 @@
 .playlistPageContent {
   text-align: left;
   padding: 1.5rem 2rem;
-  .ttt {
+  #ttt {
     font-size: 7rem !important;
     margin: 0;
     line-height: 1;
@@ -85,7 +85,7 @@
 
 .playIconPlaylist {
   opacity: 1;
-  background-color: #1ed760;
+  background-color: #7232d6;
   width: 46px;
   height: 46px;
   border-radius: 50%;
@@ -99,6 +99,10 @@
   svg {
     margin: auto;
   }
+}
+
+.playIconPlaylist:hover {
+  cursor: pointer;
 }
 
 .icons {
@@ -166,4 +170,12 @@
   position: relative;
   top: -27px;
   margin-left: 1rem;
+}
+
+.list:hover {
+  cursor: pointer;
+}
+
+.songTime span {
+  margin-right: 1rem;
 }

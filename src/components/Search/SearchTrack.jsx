@@ -28,11 +28,6 @@ export function SearchTrack() {
     setToken(token);
   }, []);
 
-  const logout = () => {
-    setToken("");
-    window.localStorage.removeItem("token");
-  };
-
   const [searchKey, setSearchKey] = useState("");
   const [tracks, setTracks] = useState([]);
 
@@ -53,35 +48,15 @@ export function SearchTrack() {
 
   const renderTracks = () => {
     return tracks.map((track) => (
-      <div key={track.id}>
-        {track ? (
-          <img
-            width={"200px"}
-            height={"200px"}
-            src={track.album.images[1].url}
-            alt=""
-          />
-        ) : (
-          <div>No Image</div>
-        )}
-        {track.name}
+      <div className="cardTrack" key={track.id}>
+        <img className="card-image" src={track.album.images[1].url} alt="" />
+        <div className="card-content">
+          <div className="track-name">{track.name}</div>
+          <div className="artist-name">{track.artists[0].name}</div>
+        </div>
       </div>
     ));
   };
-
-  console.log(tracks);
-
-  const inputs = document.querySelectorAll("input");
-
-  inputs.forEach((el) => {
-    el.addEventListener("blur", (e) => {
-      if (e.target.value) {
-        e.target.classList.add("dirty");
-      } else {
-        e.target.classList.remove("dirty");
-      }
-    });
-  });
 
   return (
     <div className="searchAlbum">
@@ -91,10 +66,10 @@ export function SearchTrack() {
             <a
               href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
             >
-              Login to Spotify
+              Login to Database
             </a>
           ) : (
-            <button onClick={logout}>Logout</button>
+            <div></div>
           )}
         </header>
         <div className="form__group field">
@@ -106,14 +81,16 @@ export function SearchTrack() {
               placeholder="Name"
               name="name"
               id="name"
+              spellcheck="false"
               onChange={(e) => setSearchKey(e.target.value)}
             />
-            <label for="name" class="form__label">
+            <label htmlFor="name" className="form__label">
               Song Name
             </label>
             {/* <button type={"submit"}>Search</button> */}
           </form>
-          {renderTracks()}
+
+          <div className="cardsWrapSearch">{renderTracks()}</div>
         </div>
       </div>
     </div>

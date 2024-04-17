@@ -1,14 +1,13 @@
 import "./Playlists.css";
-import { ReactComponent as PlayIcon } from "../../svgs/play.svg";
+import { ReactComponent as PlayIcon } from "../../svgs/playIcon.svg";
 import { Link } from "react-router-dom";
-import { dataPlaylist } from "../datas/dataPlaylist";
-
-console.log(dataPlaylist);
+import { dataPlaylist } from "../../datas/dataPlaylist";
 
 export default function Playlists(props) {
   const matchedPlaylist = dataPlaylist[0].filter(
     (playlist) => playlist.category_id === props.category_id
   );
+
   return (
     <div className="cardsWrapInner">
       {matchedPlaylist.map((playlist, id) => (
@@ -18,7 +17,7 @@ export default function Playlists(props) {
         >
           <div className="card" key={id}>
             <div className="cardImage">
-              <img src={playlist.img} alt="Pic 1" />
+              <img href="#ttt" src={playlist.img} alt="Pic 1" />
             </div>
             <div className="cardContent">
               <h3>{playlist.name}</h3>
