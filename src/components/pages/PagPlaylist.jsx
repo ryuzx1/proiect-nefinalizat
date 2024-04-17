@@ -12,6 +12,17 @@ export default function PagPlaylist() {
 
   id = parseInt(id);
 
+  function randomLikes1(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  function randomLikes2(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  const randomLikes =
+    " ‎ ● " + randomLikes1(1000) + "," + randomLikes2(1000) + " likes";
+
   function addRandomSongTime(tracks) {
     function getRandomTime() {
       const minutes = Math.floor(Math.random() * (4 - 2 + 1)) + 2;
@@ -106,6 +117,7 @@ export default function PagPlaylist() {
             <p className="smallText">{playlist.desc}</p>
             <div className="playlistPageDesc">
               <p>RythmX</p>
+              <span>{randomLikes}</span>
             </div>
           </div>
         </div>
